@@ -1,0 +1,51 @@
+body {
+    font-family: Helvetica, sans-serif;
+    margin: 20px;
+    /* Dark gradient background with specified colors */
+    background: linear-gradient(to right, #1D1616, #8E1616, #D84040); /* Gradient using dark to vivid red */
+    color: #161010; /* Light gray text color for better readability on a dark background */
+}
+
+.container {
+    width: 600px;
+    margin: auto;
+    background-color: rgba(238, 238, 238, 0.8); /* Semi-transparent version of the light gray */
+    padding: 20px; /* Padding around the content within the container */
+    border-radius: 8px; /* Rounded corners for the container */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow for depth */
+    text-align: center; /* Center-aligns text and children elements */
+}
+
+input[type="text"], button {
+    padding: 10px;
+    margin-top: 5px; /* Adjusted for visual balance */
+    margin-bottom: 5px; /* Adjusted for visual balance */
+    border: none; /* Remove default border */
+    border-radius: 4px; /* Rounded corners for input and button */
+    width: calc(50% - 12px); /* Adjust width to fit container width */
+    display: block; /* Make these elements block to center align properly */
+    margin-left: auto; /* Center-aligning for block elements */
+    margin-right: auto; /* Center-aligning for block elements */
+}
+
+button {
+    background-color: #D84040; /* Vivid red background for the button */
+    color: #EEEEEE; /* Light gray text color for the button */
+    cursor: pointer; /* Cursor changes to pointer when hovering over the button */
+}
+
+button:hover {
+    background-color: #8E1616; /* Dark red when hovered */
+}
+
+.movie-box {
+    margin: 10px auto; /* Center align and provide margin */
+    padding: 8px;
+    border: 1px solid #EEEEEE; /* Light gray border for contrast */
+    display: block; /* Make box a block element to respect margin auto */
+    max-width: 300px; /* Maximum width for better visual structure */
+    background-color: #1D1616; /* Very dark red background for each movie box */
+    color: #EEEEEE; /* Light gray text for visibility */
+    border-radius: 4px; /* Rounded corners for each movie box */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+}

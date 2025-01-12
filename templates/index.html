@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommender</title>
+    <link href="/static/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <h1>Movie Recommender</h1>
+        <form id="movieForm">
+            <input type="text" id="movieName" name="movieName" required>
+            <button type="submit">Recommend</button>
+        </form>
+        <div id="recommendationResults"></div>
+    </div>
+
+    <script>
+        document.getElementById('movieForm').onsubmit = async function(e) {
+            e.preventDefault();
+            const movieName = document.getElementById('movieName').value;
+            const response = await fetch('http://127.0.0.1:8000/recommend/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ title: movieName }) // Sending as JSON
+            });
+            const result = await response.json();
+            console.log(result);
+            const container = document.getElementById('recommendationResults');
+            container.innerHTML = '';
+            if (response.ok) {
+                result.recommendations.forEach(movie => {
+                    const div = document.createElement('div');
+                    div.textContent = movie;
+                    container.appendChild(div);
+                });
+            } else {
+                container.textContent = result.detail;
+            }
+        };
+    </script>
+</body>
+</html>
