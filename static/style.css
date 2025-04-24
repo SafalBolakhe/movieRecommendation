@@ -1,51 +1,368 @@
 body {
-    font-family: Helvetica, sans-serif;
-    margin: 20px;
-    /* Dark gradient background with specified colors */
-    background: linear-gradient(to right, #1D1616, #8E1616, #D84040); /* Gradient using dark to vivid red */
-    color: #161010; /* Light gray text color for better readability on a dark background */
+    background-color: #141414;
+    color: #fff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
-.container {
-    width: 600px;
-    margin: auto;
-    background-color: rgba(238, 238, 238, 0.8); /* Semi-transparent version of the light gray */
-    padding: 20px; /* Padding around the content within the container */
-    border-radius: 8px; /* Rounded corners for the container */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Slightly stronger shadow for depth */
-    text-align: center; /* Center-aligns text and children elements */
+.container-fluid {
+    max-width: 1400px;
+    padding: 2rem;
 }
 
-input[type="text"], button {
-    padding: 10px;
-    margin-top: 5px; /* Adjusted for visual balance */
-    margin-bottom: 5px; /* Adjusted for visual balance */
-    border: none; /* Remove default border */
-    border-radius: 4px; /* Rounded corners for input and button */
-    width: calc(50% - 12px); /* Adjust width to fit container width */
-    display: block; /* Make these elements block to center align properly */
-    margin-left: auto; /* Center-aligning for block elements */
-    margin-right: auto; /* Center-aligning for block elements */
+.header {
+    margin-bottom: 3rem;
 }
 
-button {
-    background-color: #D84040; /* Vivid red background for the button */
-    color: #EEEEEE; /* Light gray text color for the button */
-    cursor: pointer; /* Cursor changes to pointer when hovering over the button */
+.header h1 {
+    color: #e50914;
+    font-weight: 700;
 }
 
-button:hover {
-    background-color: #8E1616; /* Dark red when hovered */
+.header p {
+    color: #8c8c8c;
 }
 
-.movie-box {
-    margin: 10px auto; /* Center align and provide margin */
-    padding: 8px;
-    border: 1px solid #EEEEEE; /* Light gray border for contrast */
-    display: block; /* Make box a block element to respect margin auto */
-    max-width: 300px; /* Maximum width for better visual structure */
-    background-color: #1D1616; /* Very dark red background for each movie box */
-    color: #EEEEEE; /* Light gray text for visibility */
-    border-radius: 4px; /* Rounded corners for each movie box */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Subtle shadow for depth */
+.search-container {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.input-group {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.form-control {
+    background-color: #333;
+    border: none;
+    color: #fff;
+    padding: 1rem;
+    font-size: 1.1rem;
+}
+
+.form-control:focus {
+    background-color: #444;
+    color: #fff;
+    box-shadow: none;
+    border-color: #e50914;
+}
+
+.form-control::placeholder {
+    color: #8c8c8c;
+}
+
+.btn-primary {
+    background-color: #e50914;
+    border: none;
+    padding: 0 2rem;
+    font-weight: 600;
+}
+
+.btn-primary:hover {
+    background-color: #f40612;
+}
+
+.movie-card {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.movie-card:hover {
+    transform: scale(1.05);
+    z-index: 1;
+}
+
+.movie-poster {
+    position: relative;
+    padding-top: 150%;
+    overflow: hidden;
+}
+
+.movie-poster img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.movie-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.7) 50%, rgba(0,0,0,0) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 1rem;
+}
+
+.movie-card:hover .movie-overlay {
+    opacity: 1;
+}
+
+.movie-details {
+    transform: translateY(20px);
+    transition: transform 0.3s ease;
+}
+
+.movie-card:hover .movie-details {
+    transform: translateY(0);
+}
+
+.movie-title {
+    color: #fff;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.movie-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.movie-rating {
+    color: #f1c40f;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.similarity-score {
+    color: #3498db;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.movie-genres {
+    color: #8c8c8c;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.movie-overview {
+    color: #8c8c8c;
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.movie-overview p {
+    margin-bottom: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.alert {
+    border-radius: 8px;
+    border: none;
+    background-color: #e50914;
+    color: #fff;
+}
+
+.loading-spinner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    margin: 2rem 0;
+}
+
+.loading-spinner .spinner-border {
+    width: 3rem;
+    height: 3rem;
+    border-width: 0.25rem;
+}
+
+.loading-spinner p {
+    color: #8c8c8c;
+    margin-top: 1rem;
+    font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+    .container-fluid {
+        padding: 1rem;
+    }
+    
+    .header {
+        margin-bottom: 2rem;
+    }
+    
+    .movie-card {
+        margin-bottom: 1rem;
+    }
+    
+    .movie-poster {
+        padding-top: 150%;
+    }
+}
+
+/* Movie Detail Modal Styles */
+.modal-content {
+    background-color: #141414;
+    border: none;
+    border-radius: 0;
+}
+
+.movie-detail-container {
+    position: relative;
+    min-height: 80vh;
+}
+
+.movie-detail-backdrop {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(20, 20, 20, 0.8) 0%, rgba(20, 20, 20, 1) 100%);
+    z-index: 1;
+}
+
+.movie-detail-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    padding: 2rem;
+    gap: 2rem;
+}
+
+.movie-detail-poster {
+    flex: 0 0 300px;
+}
+
+.movie-detail-poster img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.movie-detail-info {
+    flex: 1;
+    color: #fff;
+}
+
+.movie-detail-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: #fff;
+}
+
+.movie-detail-meta {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.movie-detail-year,
+.movie-detail-rating,
+.movie-detail-similarity {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.movie-detail-year {
+    color: #8c8c8c;
+}
+
+.movie-detail-rating {
+    color: #f1c40f;
+}
+
+.movie-detail-similarity {
+    color: #3498db;
+}
+
+.movie-detail-genres {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+    color: #8c8c8c;
+    font-size: 1rem;
+}
+
+.movie-detail-overview {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #fff;
+    margin-bottom: 0;
+}
+
+/* Modal Close Button */
+.modal .btn-close {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    z-index: 3;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    width: 2rem;
+    height: 2rem;
+    padding: 0.5rem;
+    opacity: 1;
+}
+
+.modal .btn-close:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+/* Responsive Styles */
+@media (max-width: 992px) {
+    .movie-detail-content {
+        flex-direction: column;
+        padding: 1rem;
+    }
+
+    .movie-detail-poster {
+        flex: 0 0 auto;
+        max-width: 300px;
+        margin: 0 auto 2rem;
+    }
+
+    .movie-detail-title {
+        font-size: 2rem;
+    }
+}
+
+@media (max-width: 576px) {
+    .movie-detail-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .movie-detail-title {
+        font-size: 1.5rem;
+    }
+
+    .movie-detail-poster {
+        max-width: 100%;
+    }
 }
